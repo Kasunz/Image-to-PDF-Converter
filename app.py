@@ -42,7 +42,7 @@ class ImageToPDFConverter:
 
      # Open a file dialog to select multiple images and store the file paths.
     def select_images(self):
-        self.select_paths = filedialog.askopenfilenames(title="Select Images", filetypes=[("Image files", "*.png; *.jpg; *.jpeg")])
+        self.image_path = filedialog.askopenfilenames(title="Select Images", filetypes=[("Image files", "*.png; *.jpg; *.jpeg")])
         self.update_selected_images_listbox()
 
     # Convert the selected images into a PDF document.

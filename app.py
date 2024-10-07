@@ -1,9 +1,13 @@
 import tkinter as tk
 from tkinter import filedialog
+from reportlab.pdfgen import canvas
+from PIL import Image
 import os
+
 
 class ImageToPDFConverter:
     def __init__(self, root):
+        self.select_paths = None
         self.select_images = None
         self.convert_images_to_pdf = None
         self.root = root
@@ -30,6 +34,27 @@ class ImageToPDFConverter:
 
         convert_button = tk.Button(self.root, text="Convert to PDF", command=self.convert_images_to_pdf)
         convert_button.pack(pady=(20, 40))
+
+
+    def select_images(self):
+        self.select_paths = filedialog.askopenfilenames(title="Select Images", filetypes=[("Image files", "*.png; *.jpg; *.jpeg")])
+        self.update_selected_images_listbox()
+
+    def update_selected_images_listbox(self):
+        self.selected_images_listbox.delete(0, tk.END)
+
+        for image_path in self.image_path:
+            _, image_path = os.path.split(image_path)
+            self.selected_images_listbox.insert(tk.END, image_path)
+
+    def convert_images_to_pdf(self):
+        if not self.image_path:
+            return
+
+        output_pdf_path = self.output_pdf_name.get() + ".pdf" if self.output_pdf_name.get() else "Converted_images.pdf"
+
+        pdf = canvas.Canvas(output_pdf_path, pagesize=(612, 792))
+
 
 def main():
     root = tk.Tk()

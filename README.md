@@ -72,4 +72,7 @@ Ensure you have the following installed before running the program:
 ![image](https://github.com/user-attachments/assets/1a274cbe-f940-495c-a223-bebcd444acaa)
 
 
+## License
+
+This project is for educational purposes and does not come with any specific license.
 
